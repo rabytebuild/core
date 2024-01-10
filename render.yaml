@@ -1,0 +1,15 @@
+# render.yaml
+
+services:
+  - name: wordpress
+    type: web
+    env: docker
+    buildCommand: |
+      docker build -t render-wordpress -f Dockerfile-wordpress .
+    startCommand: docker run -p 8080:80 -e WORDPRESS_DB_HOST=render-mysql -e WORDPRESS_DB_USER=exampleuser -e WORDPRESS_DB_PASSWORD=examplepass -e WORDPRESS_DB_NAME=exampledb -d render-wordpress
+
+  - name: mysql
+    env: docker
+    buildCommand: |
+      docker build -t render-mysql -f Dockerfile-mysql .
+    startCommand: docker run -e MYSQL_DATABASE=exampledb -e MYSQL_USER=exampleuser -e MYSQL_PASSWORD=examplepass -e MYSQL_RANDOM_ROOT_PASSWORD=1 -d render-mysql
