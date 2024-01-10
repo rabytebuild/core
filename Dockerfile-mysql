@@ -1,0 +1,11 @@
+# Dockerfile-mysql
+FROM mysql:8.0
+
+ENV MYSQL_DATABASE=corewpx
+ENV MYSQL_USER=corewpx
+ENV MYSQL_PASSWORD=palazzo
+ENV MYSQL_RANDOM_ROOT_PASSWORD='1'
+
+VOLUME /var/lib/mysql
+
+EXPOSE 3306
