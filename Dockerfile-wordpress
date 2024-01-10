@@ -1,0 +1,22 @@
+# Dockerfile-wordpress
+FROM wordpress:latest
+
+WORKDIR /var/www/html
+
+# Copy custom themes and plugins (if needed)
+# COPY custom-theme/ wp-content/themes/custom-theme/
+# COPY custom-plugin/ wp-content/plugins/custom-plugin/
+
+EXPOSE 80
+
+ENV WORDPRESS_DB_HOST=db
+ENV WORDPRESS_DB_USER=exampleuser
+ENV WORDPRESS_DB_PASSWORD=examplepass
+ENV WORDPRESS_DB_NAME=exampledb
+
+VOLUME /var/www/html/wp-content
+
+COPY wp-config-docker.php /var/www/html/wp-config.php
+
+USER root
+USER www-data
